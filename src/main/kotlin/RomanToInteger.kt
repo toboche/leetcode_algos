@@ -1,6 +1,6 @@
 class RomanToInteger {
 
-    val oneToNine = linkedMapOf(
+    private val oneToNine = linkedMapOf(
         "IX" to 9,
         "VIII" to 8,
         "VII" to 7,
@@ -12,7 +12,7 @@ class RomanToInteger {
         "I" to 1,
     )
 
-    val tenToNinetyInTens = linkedMapOf(
+    private val tenToNinetyInTens = linkedMapOf(
         "X" to 10,
         "XX" to 20,
         "XXX" to 30,
@@ -24,22 +24,22 @@ class RomanToInteger {
         "XC" to 90
     )
 
-    val allRanges = listOf(
+    private val allRanges = listOf(
         tenToNinetyInTens,
         oneToNine
     )
 
     fun romanToInt(s: String): Int {
         return allRanges.fold((0 to s)) { acc, range ->
-            val mapped = mapToRange(acc.second, 1, range)
+            val mapped = mapToRange(acc.second, range)
             acc.first + mapped.first to mapped.second
         }.first
     }
 
-    private fun mapToRange(input: String, multiplier: Int, range: Map<String, Int>): Pair<Int, String> {
+    private fun mapToRange(input: String, range: Map<String, Int>): Pair<Int, String> {
         val keyMatchingInRange = range.keys.find { input.startsWith(it) }
         return if (keyMatchingInRange != null) {
-            range[keyMatchingInRange]!! * multiplier to input.removePrefix(keyMatchingInRange)
+            range[keyMatchingInRange]!! to input.removePrefix(keyMatchingInRange)
         } else {
             0 to input
         }
