@@ -13,20 +13,37 @@ class RomanToInteger {
     )
 
     private val tenToNinetyInTens = linkedMapOf(
-        "X" to 10,
-        "XX" to 20,
-        "XXX" to 30,
-        "XL" to 40,
-        "L" to 50,
-        "LX" to 60,
-        "LXX" to 70,
+        "XC" to 90,
         "LXXX" to 80,
-        "XC" to 90
+        "LXX" to 70,
+        "LX" to 60,
+        "L" to 50,
+        "XL" to 40,
+        "XXX" to 30,
+        "XX" to 20,
+        "X" to 10,
+    )
+
+    private val hundredToNineHundred = linkedMapOf(
+        "CM" to 900,
+        "DCCC" to 800,
+        "DCC" to 700,
+        "DC" to 600,
+        "D" to 500,
+        "CD" to 400,
+        "CCC" to 300,
+        "CC" to 200,
+        "C" to 100,
+    )
+
+    private val thousandToThreeThousand = linkedMapOf(
+        "MMM" to 3000,
+        "MM" to 2000,
+        "M" to 1000,
     )
 
     private val allRanges = listOf(
-        tenToNinetyInTens,
-        oneToNine
+        thousandToThreeThousand, hundredToNineHundred, tenToNinetyInTens, oneToNine
     )
 
     fun romanToInt(s: String): Int {
