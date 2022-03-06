@@ -1,30 +1,26 @@
 class ThreeSum {
     fun threeSum(nums: IntArray): List<List<Int>> {
-        val map = mutableMapOf<Int, Int>()
-        nums.withIndex().forEach {
-            map.compute(it.value) { _, _ ->
-                it.index
-            }
-        }
-        val matchingIndices = mutableListOf<List<Int>>()
-        val visitedIs = mutableSetOf<Int>()
-        val visitedJs = mutableSetOf<Int>()
+        val set = nums.withIndex().associate { it.value to it.index }
+
+        val foundCombinations = mutableSetOf<Triple<Int, Int, Int>>()
         for (i in nums.indices) {
-            if (visitedIs.contains(nums[i])) {
-                continue
-            }
             for (j in i + 1 until nums.size) {
-                if (visitedJs.contains(nums[j])) {
-                    continue
+                val missing = -(nums[i] + nums[j])
+                val foundIndex = set[missing]
+                if (foundIndex != null && foundIndex != j && foundIndex != i) {
+                    val ordered = listOf(i, j, foundIndex)
+                        .map { nums[it] }
+                        .sorted()
+                    foundCombinations.add(
+                        Triple(
+                            ordered[0], ordered[1], ordered[2]
+                        )
+                    )
                 }
-                val foundIndex = map[-(nums[i] + nums[j])]
-                if (foundIndex != null && foundIndex > j && foundIndex > i) {
-                    matchingIndices += listOf(i, j, foundIndex)
-                }
-                visitedJs += nums[j]
             }
-            visitedIs += nums[i]
         }
-        return matchingIndices.map { it.map { nums[it] } }
+        return foundCombinations.toList()
+            .toSet()
+            .map { listOf(it.first, it.second, it.third) }
     }
 }

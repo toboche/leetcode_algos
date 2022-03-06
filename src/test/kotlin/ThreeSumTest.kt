@@ -5,16 +5,16 @@ import kotlin.test.assertContentEquals
 
 class ThreeSumTest {
     @Test
-    fun test1() {
+    fun `test from sample`() {
         val actual: List<List<Int>> = ThreeSum().threeSum(intArrayOf(-1, 0, 1, 2, -1, -4))
 
-        assertContentEquals(
+        assertEquals(
             listOf(
                 listOf(
                     -1, 0, 1
                 ),
                 listOf(
-                    -1, 2, -1
+                    -1, -1, 2
                 )
             ),
             actual
@@ -22,15 +22,39 @@ class ThreeSumTest {
     }
 
     @Test
-    fun test2() {
+    fun `multiple same solutions`() {
         val actual = ThreeSum().threeSum(intArrayOf(0, 0, 0, 0))
 
-        assertContentEquals(
+        assertEquals(
             listOf(
                 listOf(
                     0, 0, 0
                 )
             ),
+            actual
+        )
+    }
+
+    @Test
+    fun `multiple same solutions with different ordering`() {
+        val actual = ThreeSum().threeSum(intArrayOf(-1, 0, 1, 0))
+
+        assertEquals(
+            listOf(
+                listOf(
+                    -1, 0, 1
+                )
+            ),
+            actual
+        )
+    }
+
+    @Test
+    fun `empty data set`() {
+        val actual = ThreeSum().threeSum(intArrayOf())
+
+        assertEquals(
+            emptyList<List<Int>>(),
             actual
         )
     }
