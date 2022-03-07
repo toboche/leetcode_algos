@@ -23,4 +23,15 @@ class TwoSum {
         }
         return intArrayOf()
     }
+
+    fun twoSum3(nums: IntArray, target: Int): IntArray {
+        val set = mutableMapOf<Int, Int>()
+        for (num in nums.withIndex()) {
+            val index = set[target - num.value]
+            if (index != null && index != num.index)
+                return intArrayOf(num.index, index)
+            set.put(num.value, num.index)
+        }
+        return intArrayOf()
+    }
 }
