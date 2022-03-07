@@ -30,4 +30,30 @@ class TwoSumTest {
         )
     }
 
+    @Test
+    fun test4() {
+        val actual = TwoSum().twoSum2(intArrayOf(2, 7, 11, 15), 9)
+
+        assertContentEquals(
+            intArrayOf(0, 1), actual
+        )
+    }
+
+    @Test
+    fun test5() {
+        val actual = TwoSum().twoSum2(intArrayOf(3, 2, 4), 6)
+
+        assertContentEquals(
+            intArrayOf(1, 2), actual
+        )
+    }
+
+    @Test
+    fun test6() {
+        val actual = TwoSum().twoSum2(intArrayOf(3, 3), 6)
+
+        assertContentEquals(
+            intArrayOf(0, 1), actual
+        )
+    }
 }
