@@ -8,10 +8,30 @@ class GroupAnagramsTest {
 
         assertContentEquals(
             listOf(
+                listOf("eat", "tea", "ate"),
+                listOf("tan", "nat"),
                 listOf("bat"),
-                listOf("nat", "tan"),
-                listOf("ate", "eat", "tea")
             ),
+            actual
+        )
+    }
+
+    @Test
+    fun testEmpty() {
+        val actual = GroupAnagrams().groupAnagrams(arrayOf())
+
+        assertContentEquals(
+            emptyList(),
+            actual
+        )
+    }
+
+    @Test
+    fun testSingleItem() {
+        val actual = GroupAnagrams().groupAnagrams(arrayOf("a"))
+
+        assertContentEquals(
+            listOf(listOf("a")),
             actual
         )
     }
