@@ -11,8 +11,8 @@ class AddBinary {
 
     private fun binaryToInt(str: String): BigInteger {
         return str.withIndex()
-            .map { it.value.digitToInt().toBigInteger().shl(str.length - 1 - it.index) }
-            .fold(BigInteger.ZERO) { acc, num ->
+            .map { (if (it.value == '1') 1 else 0).toBigInteger().shl(str.length - 1 - it.index) }
+            .fold(BigInteger.ZERO) { acc: BigInteger, num: BigInteger ->
                 acc + num
             }
     }
