@@ -1,6 +1,5 @@
 class ValidPalindrome2 {
     fun validPalindrome(s: String): Boolean {
-        var skipped = false
         var l = 0
         var r = s.length - 1
         while (l < r) {
@@ -16,7 +15,6 @@ class ValidPalindrome2 {
         }
         return true
     }
-
 
     private fun validPalindromeWithoutSkipping(str: String): Boolean {
         for (i in 0 until str.length / 2) {
