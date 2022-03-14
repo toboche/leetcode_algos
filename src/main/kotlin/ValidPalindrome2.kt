@@ -2,24 +2,29 @@ class ValidPalindrome2 {
     fun validPalindrome(s: String): Boolean {
         var skipped = false
         var l = 0
-        var r = s.length -1
-        while(l<r){
-            if(skipped && s[l] != s[r]){
-                return false
-            }
-            if(s[l] == s[r]){
+        var r = s.length - 1
+        while (l < r) {
+            if (s[l] == s[r]) {
                 l++
                 r--
-            } else if(s[l+1] == s[r] && !skipped) {
-                l++
-                skipped = true
-            } else if(s[l] == s[r-1] && !skipped){
-                r--
-                skipped = true
-            } else {
+            } else
+                return validPalindromeWithoutSkipping(s.substring(l..r - 1)) || validPalindromeWithoutSkipping(
+                    s.substring(
+                        l + 1..r
+                    )
+                )
+        }
+        return true
+    }
+
+
+    private fun validPalindromeWithoutSkipping(str: String): Boolean {
+        for (i in 0 until str.length / 2) {
+            if (str[i] != str[str.length - 1 - i]) {
                 return false
             }
         }
         return true
     }
 }
+

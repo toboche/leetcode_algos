@@ -37,4 +37,26 @@ class ValidPalindrome2Test {
 
         assertFalse(actual)
     }
+
+    @Test
+    fun test7() {
+        val actual = ValidPalindrome2().validPalindrome("deee")
+
+        assertTrue(actual)
+    }
+
+    @Test
+    fun test4() {
+        val actual =
+            ValidPalindrome2().validPalindrome("aguokepatgbnvfqmgmlcupuufxoohdfpgjdmysgvhmvffcnqxjjxqncffvmhvgsymdjgpfdhooxfuupuculmgmqfvnbgtapekouga")
+
+        assertTrue(actual)
+    }
+
+    @Test
+    fun test8() {
+        val actual = ValidPalindrome2().validPalindrome("ebcbbececabbacecbbcbe")
+
+        assertTrue(actual)
+    }
 }
