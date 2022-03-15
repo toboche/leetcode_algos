@@ -1,12 +1,16 @@
 class SubarraySumEqualsK {
     fun subarraySum(nums: IntArray, k: Int): Int {
-        val list = nums.toList()
         var count = 0
+        var cumulativeSum = 0
+        val occurrenceFrequencies = mutableMapOf<Int, Int>()
+        occurrenceFrequencies[0] = 1
         for (i in nums.indices) {
-            for (j in i + 1..nums.size) {
-                if (list.subList(i, j).sum() == k) {
-                    count++
-                }
+            cumulativeSum += nums[i]
+            if (occurrenceFrequencies.containsKey(cumulativeSum - k)) {
+                count += occurrenceFrequencies[cumulativeSum - k]!!
+            }
+            occurrenceFrequencies.compute(cumulativeSum) { _, currentCount ->
+                (currentCount ?: 0) + 1
             }
         }
         return count
