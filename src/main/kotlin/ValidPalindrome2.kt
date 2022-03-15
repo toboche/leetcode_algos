@@ -25,4 +25,3 @@ class ValidPalindrome2 {
         return true
     }
 }
-
