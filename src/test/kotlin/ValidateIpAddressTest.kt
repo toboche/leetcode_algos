@@ -36,4 +36,18 @@ class ValidateIpAddressTest {
 
         assertEquals("Neither", actual)
     }
+
+    @Test
+    fun testNeither2() {
+        val actual = ValidateIpAddress().validIPAddress("01.01.01.01")
+
+        assertEquals("Neither", actual)
+    }
+
+    @Test
+    fun testNeither3() {
+        val actual = ValidateIpAddress().validIPAddress("2001:0db8:85a3:00000:0:8A2E:0370:7334")
+
+        assertEquals("Neither", actual)
+    }
 }
