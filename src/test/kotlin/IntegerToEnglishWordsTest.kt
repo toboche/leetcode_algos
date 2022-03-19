@@ -13,6 +13,7 @@ class IntegerToEnglishWordsTest(val int: Int, val expected: String) {
             return listOf(
                 arrayOf<Any>(2, "Two"),
                 arrayOf<Any>(0, "Zero"),
+                arrayOf<Any>(10, "Ten"),
                 arrayOf<Any>(54, "Fifty Four"),
                 arrayOf<Any>(11, "Eleven"),
                 arrayOf<Any>(19, "Nineteen"),
