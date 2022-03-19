@@ -8,4 +8,11 @@ class IntegerToEnglishWordsTest {
 
         assertEquals(actual, "Three")
     }
+
+    @Test
+    fun test54() {
+        val actual = IntegerToEnglishWords().numberToWords(54)
+
+        assertEquals(actual, "Fifty Four")
+    }
 }
