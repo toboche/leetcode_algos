@@ -40,13 +40,31 @@ class IntegerToEnglishWords {
         if (num == 0) {
             return "Zero"
         }
-        val hundreds =  if((100..999).contains(num%1000)){
-            digits[(num /100)%10] + " Hundred"
-        }else{
+        val thousands = if ((1..999).contains(num % 1000)) {
+            upToThousand(num % 1000)
+        } else {
+            null
+        }
+        val millions = if ((1000..999999).contains(num % 1000000)) upToThousand(num % 1000000/1000) + " Thousand" else {
+            null
+        }
+        return listOf(
+            millions,
+            thousands
+        ).fold("") { acc, it ->
+            if (it.isNullOrBlank()) acc else "$acc $it"
+        }
+            .trim()
+    }
+
+    private fun upToThousand(num: Int): String {
+        val hundreds = if ((100..999).contains(num % 1000)) {
+            digits[(num / 100) % 10] + " Hundred"
+        } else {
             null
         }
         val tens = if ((20..99).contains(num % 100)) {
-            tens[num%100 / 10]
+            tens[num % 100 / 10]
         } else {
             null
         }

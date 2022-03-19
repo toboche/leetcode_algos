@@ -1,4 +1,4 @@
-Ļimport org.junit.Assert.assertEquals
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
@@ -24,7 +24,9 @@ class IntegerToEnglishWordsTest(val int: Int, val expected: String) {
                 arrayOf<Any>(111, "One Hundred Eleven"),
                 arrayOf<Any>(136, "One Hundred Thirty Six"),
                 arrayOf<Any>(567, "Five Hundred Sixty Seven"),
-                arrayOf<Any>(999, "Nine Hundred Ninety Nine")
+                arrayOf<Any>(999, "Nine Hundred Ninety Nine"),
+                arrayOf<Any>(234567, "Two Hundred Thirty Four Thousand Five Hundred Sixty Seven"),
+                arrayOf<Any>(1234567, "One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven"),
             )
         }
     }
