@@ -1,5 +1,7 @@
+import java.math.BigInteger
+
 class IntegerToEnglishWords {
-    val digits = listOf(
+    private val digits = listOf(
         null,
         "One",
         "Two",
@@ -11,7 +13,7 @@ class IntegerToEnglishWords {
         "Eight",
         "Nine"
     )
-    val elevenToNineteen = listOf(
+    private val elevenToNineteen = listOf(
         "Eleven",
         "Twelve",
         "Thirteen",
@@ -23,12 +25,12 @@ class IntegerToEnglishWords {
         "Nineteen"
     )
 
-    val tens = listOf(
+    private val tens = listOf(
         null,
         "Ten",
         "Twenty",
         "Thirty",
-        "Fourty",
+        "Forty",
         "Fifty",
         "Sixty",
         "Seventy",
@@ -36,26 +38,46 @@ class IntegerToEnglishWords {
         "Ninety"
     )
 
+    data class ValueRange(val name: String?, val zeros: Int)
+
+    private val ranges = listOf(
+        ValueRange("Million", 6),
+        ValueRange("Thousand", 3),
+        ValueRange(null, 0),
+    )
+
     fun numberToWords(num: Int): String {
         if (num == 0) {
             return "Zero"
         }
-        val thousands = if ((1..999).contains(num % 1000)) {
-            upToThousand(num % 1000)
+        return ranges.map { calculateForRange(num.toBigInteger(), it) }
+            .fold("") { acc, it ->
+                if (it.isNullOrBlank()) acc else "$acc $it"
+            }
+            .trim()
+    }
+
+    private fun calculateForRange(num: BigInteger, valueRange: ValueRange) =
+        if (((10.toBigInteger().pow(valueRange.zeros))..10.toBigInteger()
+                .pow(valueRange.zeros + 3) - 1.toBigInteger()).contains(
+                num % 10.toBigInteger()
+                    .pow(valueRange.zeros + 3)
+            )
+        ) {
+            if (valueRange.name != null) {
+                upToThousand(
+                    (num % 10.toBigInteger()
+                        .pow(valueRange.zeros + 3) / 10.toBigInteger().pow(valueRange.zeros)).toInt()
+                ) + " " + valueRange.name
+            } else {
+                upToThousand(
+                    (num % 10.toBigInteger()
+                        .pow(valueRange.zeros + 3)).toInt()
+                )
+            }
         } else {
             null
         }
-        val millions = if ((1000..999999).contains(num % 1000000)) upToThousand(num % 1000000/1000) + " Thousand" else {
-            null
-        }
-        return listOf(
-            millions,
-            thousands
-        ).fold("") { acc, it ->
-            if (it.isNullOrBlank()) acc else "$acc $it"
-        }
-            .trim()
-    }
 
     private fun upToThousand(num: Int): String {
         val hundreds = if ((100..999).contains(num % 1000)) {
