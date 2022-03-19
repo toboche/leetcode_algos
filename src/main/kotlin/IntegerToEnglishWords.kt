@@ -40,8 +40,13 @@ class IntegerToEnglishWords {
         if (num == 0) {
             return "Zero"
         }
+        val hundreds =  if((100..999).contains(num%1000)){
+            digits[(num /100)%10] + " Hundred"
+        }else{
+            null
+        }
         val tens = if ((20..99).contains(num % 100)) {
-            tens[num / 10]
+            tens[num%100 / 10]
         } else {
             null
         }
@@ -56,6 +61,7 @@ class IntegerToEnglishWords {
             null
         }
         return listOf(
+            hundreds,
             tens,
             teens,
             digit
