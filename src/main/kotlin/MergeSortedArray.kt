@@ -16,7 +16,7 @@ class MergeSortedArray {
             } else if (num2 == null) {
                 nums1[index] = num1
                 nums1Index++
-            } else if (num1 < num2 && num1 != 0) {
+            } else if (num1 < num2 && nums1Index < m) {
                 nums1[index] = num1
                 nums1Index++
             } else {
