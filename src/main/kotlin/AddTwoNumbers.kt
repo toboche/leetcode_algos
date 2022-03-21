@@ -1,24 +1,26 @@
-data class ListNode(var value: Int, var next: ListNode?)
+data class ListNode(var `val`: Int, var next: ListNode?)
 
 class AddTwoNumbers {
     fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? {
-        var n1 = l1
-        var n2 = l2
-        var remainder = 0
-        val fakeHead = ListNode(-1, null)
-        var tail: ListNode = fakeHead
-        while (n1 != null || n2 != null) {
-            val sum = (n1?.value ?: 0) + (n2?.value ?: 0) + remainder
-            val value = sum % 10
-            remainder = sum / 10
-            tail.next = ListNode(value, null)
-            tail = tail.next!!
-            n1 = n1?.next
-            n2 = n2?.next
+        return addTwoNumbersInternal(l1, l2, null, 0)
+    }
+
+    private fun addTwoNumbersInternal(
+        l1: ListNode?, l2: ListNode?,
+        out: ListNode?, remainder: Int
+    ): ListNode? {
+        if (l1 == null && l2 == null) {
+            if (remainder != 0) {
+                out?.next = ListNode(remainder, null)
+            }
+            return out
         }
-        if (remainder != 0) {
-            tail.next = ListNode(remainder, null)
-        }
-        return fakeHead.next
+        val i = (l1?.`val` ?: 0) + (l2?.`val` ?: 0) + remainder
+        val value = i % 10
+        val remainder = i / 10
+        val newOut = ListNode(`val` = value, null)
+        out?.next = newOut
+        addTwoNumbersInternal(l1?.next, l2?.next, newOut, remainder)
+        return newOut
     }
 }
