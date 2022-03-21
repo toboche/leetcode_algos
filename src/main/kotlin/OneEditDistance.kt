@@ -4,10 +4,12 @@ class OneEditDistance {
     fun isOneEditDistance(s: String, t: String): Boolean {
         var ptr = 0
         while (ptr < s.length || ptr < t.length) {
-            if ((ptr == s.length && t.substring(ptr).isEmpty()) ||
-                ptr == t.length && s.substring(ptr).isEmpty()
+            if ((ptr == s.length && t.substring(ptr + 1).isEmpty()) ||
+                ptr == t.length && s.substring(ptr + 1).isEmpty()
             ) {
                 return true
+            } else if (ptr == s.length || ptr == t.length) {
+                return false
             } else if (s[ptr] == t[ptr]) {
                 ptr++
                 continue
