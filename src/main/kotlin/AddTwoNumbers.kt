@@ -1,4 +1,14 @@
-data class ListNode(var `val`: Int, var next: ListNode?)
+data class ListNode(var `val`: Int, var next: ListNode?) {
+    companion object {
+        fun fromItems(elements: List<Int>): ListNode? {
+            return if (elements.isEmpty()) {
+                null
+            } else {
+                ListNode(elements.first(), fromItems(elements.drop(1)))
+            }
+        }
+    }
+}
 
 class AddTwoNumbers {
     fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? {
