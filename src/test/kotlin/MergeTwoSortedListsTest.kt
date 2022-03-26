@@ -18,6 +18,9 @@ internal class MergeTwoSortedListsTest(
             return listOf(
                 arrayOf<Any>(listOf(1, 2, 4), listOf(1, 3, 4), listOf(1, 1, 2, 3, 4, 4)),
                 arrayOf<Any>(listOf<Int>(), listOf<Int>(), listOf<Int>()),
+                arrayOf<Any>(listOf(1), listOf<Int>(), listOf(1)),
+                arrayOf<Any>(listOf<Int>(), listOf(2), listOf(2)),
+                arrayOf<Any>(listOf<Int>(), listOf(2, 3, 4), listOf(2, 3, 4)),
             )
         }
     }
