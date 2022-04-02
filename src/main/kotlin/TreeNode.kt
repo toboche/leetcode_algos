@@ -12,8 +12,8 @@ data class TreeNode(
             val first = list[position] ?: return null
 
             val current = TreeNode(first)
-            current.left = from(list, position = level * position + 1, level = level + 1)
-            current.right = from(list, position = level * position + 2, level = level + 1)
+            current.left = from(list, position = 2 * position + 1, level = level + 1)
+            current.right = from(list, position = 2 * position + 2, level = level + 1)
             return current
         }
     }

@@ -14,7 +14,21 @@ class FlattenBinaryTree {
         root.left = null
     }
 
-    fun findLast(root: TreeNode?): TreeNode? {
+    fun flattenFaster(root: TreeNode?): Unit {
+        var current = root
+
+        while (current != null) {
+            if (current.left != null) {
+                val lastRightmost = findLast(current.left)
+                lastRightmost!!.right = current.right
+                current.right = current.left
+                current.left = null
+            }
+            current = current.right
+        }
+    }
+
+    private fun findLast(root: TreeNode?): TreeNode? {
         var last = root
         while (last?.right != null) last = last.right
         return last
