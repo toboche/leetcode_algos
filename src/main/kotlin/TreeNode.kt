@@ -1,6 +1,9 @@
-class TreeNode(var `val`: Int) {
-    var left: TreeNode? = null
+data class TreeNode(
+    var `val`: Int,
+    var left: TreeNode? = null,
     var right: TreeNode? = null
+) {
+
 
     companion object {
         fun from(list: List<Int?>): TreeNode? {

@@ -15,4 +15,11 @@ class TreeNodeTest {
 
         assertEquals(TreeNode(1), actual)
     }
+
+    @Test
+    fun `two items`() {
+        val actual = TreeNode.from(listOf(1,2))
+
+        assertEquals(TreeNode(1, TreeNode(2)), actual)
+    }
 }
