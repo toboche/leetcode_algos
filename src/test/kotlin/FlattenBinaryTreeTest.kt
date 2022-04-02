@@ -15,4 +15,13 @@ class FlattenBinaryTreeTest {
 
         assertEquals(1, root.`val`)
     }
+
+    @Test
+    fun `test regular case`() {
+        val root = TreeNode(1)
+
+        FlattenBinaryTree().flatten(root)
+
+        assertEquals(1, root.`val`)
+    }
 }
