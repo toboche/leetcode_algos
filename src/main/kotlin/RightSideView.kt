@@ -3,7 +3,7 @@ class RightSideView {
         if (root == null) {
             return emptyList()
         }
-        var currentLevelQueue = mutableListOf(root)
+        val currentLevelQueue = mutableListOf(root)
         val nextLevelQueue = mutableListOf<TreeNode>()
         val view = mutableListOf<Int>()
         while (currentLevelQueue.isNotEmpty() || nextLevelQueue.isNotEmpty()) {
