@@ -21,4 +21,24 @@ class RightSideViewTest {
             actual
         )
     }
+
+    @Test
+    fun `symmetrical`() {
+        val actual = RightSideView().rightSideView(TreeNode(1, TreeNode(2), TreeNode(3)))
+
+        assertEquals(
+            listOf(1, 3),
+            actual
+        )
+    }
+
+    @Test
+    fun `asymmetrical tree, two nodes`() {
+        val actual = RightSideView().rightSideView(TreeNode(1, null, TreeNode(3)))
+
+        assertEquals(
+            listOf(1, 3),
+            actual
+        )
+    }
 }
