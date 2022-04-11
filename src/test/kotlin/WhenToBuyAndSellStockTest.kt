@@ -8,4 +8,11 @@ class WhenToBuyAndSellStockTest {
 
         assertEquals(5, actual)
     }
+
+    @Test
+    fun `sample 2`() {
+        val actual = WhenToBuyAndSellStock().maxProfit(intArrayOf(7,6,4,3,1))
+
+        assertEquals(0, actual)
+    }
 }
