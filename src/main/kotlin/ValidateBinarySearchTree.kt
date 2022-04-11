@@ -10,18 +10,18 @@ class ValidateBinarySearchTree {
         if (root == null) {
             return true
         }
-        fun validate(node: TreeNode, min: Int, max: Int): Boolean {
+        fun validate(node: TreeNode, min: Long, max: Long): Boolean {
             val thisOk = node.`val` > min && node.`val` < max
             val leftOk = node.left?.let { left ->
-                validate(left, min, node.`val`)
+                validate(left, min, node.`val`.toLong())
             } ?: true
 
             val rightOk = node.right?.let { right ->
-                validate(right, node.`val`, max)
+                validate(right, node.`val`.toLong(), max)
             } ?: true
             return thisOk && leftOk && rightOk
         }
 
-        return validate(root, Int.MIN_VALUE, Int.MAX_VALUE)
+        return validate(root, Long.MIN_VALUE, Long.MAX_VALUE)
     }
 }
