@@ -41,4 +41,14 @@ class RightSideViewTest {
             actual
         )
     }
+
+    @Test
+    fun `example from the task`() {
+        val actual = RightSideView().rightSideView(TreeNode.from(listOf(1, 2, 3, null, 5, null, 4)))
+
+        assertEquals(
+            listOf(1, 3,4),
+            actual
+        )
+    }
 }
