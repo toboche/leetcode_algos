@@ -11,4 +11,14 @@ class BinaryTreePathsTest {
             actual
         )
     }
+
+    @Test
+    fun `sample 2`() {
+        val actual = BinaryTreePaths().binaryTreePaths(null)
+
+        assertEquals(
+            listOf<String>(),
+            actual
+        )
+    }
 }
