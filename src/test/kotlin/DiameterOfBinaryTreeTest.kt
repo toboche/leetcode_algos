@@ -1,4 +1,4 @@
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class DiameterOfBinaryTreeTest {
@@ -8,6 +8,16 @@ class DiameterOfBinaryTreeTest {
 
         assertEquals(
             3,
+            actual
+        )
+    }
+
+    @Test
+    fun `sample 2`() {
+        val actual = DiameterOfBinaryTree().diameterOfBinaryTree(TreeNode.from(listOf(1, 2)))
+
+        assertEquals(
+            1,
             actual
         )
     }
