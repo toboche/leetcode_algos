@@ -21,4 +21,14 @@ class DiameterOfBinaryTreeTest {
             actual
         )
     }
+
+    @Test
+    fun `sample 3`() {
+        val actual = DiameterOfBinaryTree().diameterOfBinaryTree(TreeNode.from(listOf(1)))
+
+        assertEquals(
+            0,
+            actual
+        )
+    }
 }
