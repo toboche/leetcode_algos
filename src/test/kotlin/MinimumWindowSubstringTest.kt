@@ -11,4 +11,14 @@ class MinimumWindowSubstringTest {
             actual
         )
     }
+
+    @Test
+    fun `test multiple same letters`() {
+        val actual = MinimumWindowSubstring().minWindow("a", "aa")
+
+        assertEquals(
+            "",
+            actual
+        )
+    }
 }
