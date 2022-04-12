@@ -21,4 +21,14 @@ class BinaryTreePathsTest {
             actual
         )
     }
+
+    @Test
+    fun `sample 3`() {
+        val actual = BinaryTreePaths().binaryTreePaths(TreeNode.from(listOf(1)))
+
+        assertEquals(
+            listOf("1"),
+            actual
+        )
+    }
 }
