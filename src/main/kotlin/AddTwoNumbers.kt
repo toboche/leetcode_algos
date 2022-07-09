@@ -1,4 +1,4 @@
-data class ListNode(var `val`: Int, var next: ListNode?) {
+data class ListNode(var `val`: Int, var next: ListNode? = null) {
     companion object {
         fun fromItems(elements: List<Int>): ListNode? {
             return if (elements.isEmpty()) {
