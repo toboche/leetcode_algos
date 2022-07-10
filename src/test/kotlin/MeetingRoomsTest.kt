@@ -12,4 +12,15 @@ class MeetingRoomsTest {
             actual
         )
     }
+
+    @Test
+    fun `test 2`() {
+        val actual =
+            MeetingRooms().minMeetingRooms(arrayOf(intArrayOf(13, 15), intArrayOf(1, 13)))
+
+        assertEquals(
+            1,
+            actual
+        )
+    }
 }
