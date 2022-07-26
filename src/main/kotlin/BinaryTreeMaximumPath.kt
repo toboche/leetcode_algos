@@ -1,10 +1,5 @@
 import kotlin.math.max
 
-class TreeNode(var `val`: Int) {
-    var left: TreeNode? = null
-    var right: TreeNode? = null
-}
-
 class BinaryTreeMaximumPath {
     fun maxPathSum(root: TreeNode?): Int {
         var currentMax = Int.MIN_VALUE
