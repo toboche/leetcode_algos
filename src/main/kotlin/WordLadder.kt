@@ -1,38 +1,41 @@
 class WordLadder {
 
-    class Node(
-        val value: String,
-        var adj: List<Node>
-    )
 
     fun ladderLength(beginWord: String, endWord: String, wordList: List<String>): Int {
-        val mappings = mutableMapOf<String, Node>()
-        val extendedWordList = wordList + beginWord
-        extendedWordList.forEach {
-            mappings.put(it, Node(value = it, adj = emptyList()))
-        }
-        extendedWordList.forEach { currentWord ->
-            val currentNode = mappings[currentWord]!!
-            val adj = wordList.filter { word ->
-                word.withIndex().count { (index, wordChar) ->
-                    wordChar != currentWord[index]
-                } == 1
-            }.map { validTransformation ->
-                mappings[validTransformation]!!
+        val mappings = mutableMapOf<String, MutableList<String>>()
+        wordList.forEach { word ->
+            word.indices.map { i ->
+                word.replaceRange(i, i + 1, "*")
             }
-            currentNode.adj = adj
+                .forEach { transformedWord ->
+                    mappings.compute(transformedWord) { _, list ->
+                        (list ?: mutableListOf())
+                            .apply {
+                                add(word)
+                            }
+                    }
+                }
         }
 
-        val queue = ArrayDeque<Pair<Node, Int>>()
-        queue.add(mappings[extendedWordList.last()]!! to 1)
+        val queue = ArrayDeque<Pair<String, Int>>()
+        queue.add(beginWord to 1)
         val visited = mutableSetOf<String>()
         while (queue.isNotEmpty()) {
-            val (node, level) = queue.removeFirst()
-            visited.add(node.value)
-            if (node.value == endWord) {
+            val (current, level) = queue.removeFirst()
+            visited.add(current)
+            if (current == endWord) {
                 return level
             }
-            queue.addAll(node.adj.filterNot { visited.contains(it.value) }.map { it to level+1 })
+            val asterisked = current.indices.map { i ->
+                current.replaceRange(i, i + 1, "*")
+            }
+            val notVisited = asterisked.flatMap { mappings[it] ?: mutableListOf() }
+                .filterNot { visited.contains(it) }
+            val mappedToLevel = notVisited
+                .map { it to level + 1 }
+            queue.addAll(
+                mappedToLevel
+            )
         }
         return 0
     }
