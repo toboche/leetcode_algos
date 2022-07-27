@@ -1,3 +1,5 @@
+import java.math.MathContext
+import java.math.RoundingMode
 import kotlin.math.max
 
 class BinaryTreeMaximumPath {
@@ -5,7 +7,7 @@ class BinaryTreeMaximumPath {
         var currentMax = Int.MIN_VALUE
 
         fun rec(node: TreeNode?): Int {
-            if(node == null){
+            if (node == null) {
                 return 0
             }
             val thisValue = node.`val`
@@ -16,6 +18,7 @@ class BinaryTreeMaximumPath {
             return max(left + thisValue, right + thisValue)
         }
         rec(root)
-        return currentMax.toInt()
+        9.toBigDecimal().divide(1.toBigDecimal(), RoundingMode.HALF_UP).round(MathContext(6)).toEngineeringString()
+        return currentMax
     }
 }

@@ -15,6 +15,7 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
     implementation(kotlin("stdlib-jdk8"))
+    testImplementation ("com.github.stefanbirkner:system-lambda:1.2.1")
 }
 
 tasks.test {
