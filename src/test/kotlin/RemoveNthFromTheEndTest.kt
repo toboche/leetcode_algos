@@ -79,4 +79,17 @@ class RemoveNthFromTheEndTest {
             actualValue
         )
     }
+
+    @Test
+    fun `one pass sample 2`() {
+        val actualValue = RemoveNthFromTheEnd().removeNthFromEnd2(
+            ListNode.fromItems(listOf(1,2)),
+            1
+        )
+
+        assertEquals(
+            ListNode.fromItems(listOf(1)),
+            actualValue
+        )
+    }
 }

@@ -30,28 +30,22 @@ class RemoveNthFromTheEnd {
     }
 
     fun removeNthFromEnd2(head: ListNode?, n: Int): ListNode? {
-        var dst = 0
         val synth = ListNode(111)
         synth.next = head
         var right: ListNode? = synth
         var left: ListNode? = synth
 
-        while (right?.next != null) {
-            if (dst < n) {
-                dst++
-                right = right.next
-            } else {
-                right = right.next
-                left = left?.next
-            }
+        for (i in 0..n) {
+            right = right?.next
         }
-        if (dst == n) {
-            if (left == head) {
-                return head?.next
-            } else {
-                left?.next = left?.next?.next
-            }
+
+        while (right != null) {
+            right = right.next
+            left = left!!.next
         }
+
+        left?.next = left?.next?.next
+
         return synth.next
     }
 }
