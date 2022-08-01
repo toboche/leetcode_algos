@@ -1,26 +1,26 @@
-import org.junit.Assert.*
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import kotlin.test.assertContains
-import kotlin.test.assertContentEquals
 
 class LetterCombinationsOfAPhoneNumberTest {
     @Test
     fun `sample 1`() {
         val actualValue = LetterCombinationsOfAPhoneNumber().letterCombinations("23")
 
-        assertContentEquals(
-            listOf("ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"),
+        assertThat(
             actualValue
+        ).containsExactlyInAnyOrderElementsOf(
+            listOf("ad","ae","af","bd","be","bf","cd","ce","cf")
         )
     }
 
     @Test
     fun `empty`() {
-        val actualValue = LetterCombinationsOfAPhoneNumber().letterCombinations("23")
+        val actualValue = LetterCombinationsOfAPhoneNumber().letterCombinations("")
 
-        assertContentEquals(
-            listOf("ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"),
+        assertThat(
             actualValue
+        ).containsExactlyInAnyOrderElementsOf(
+            listOf(),
         )
     }
 }
