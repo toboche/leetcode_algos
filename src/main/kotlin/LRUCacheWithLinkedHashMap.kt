@@ -1,4 +1,4 @@
-class LRUCache(capacity: Int) {
+class LRUCacheWithLinkedHashMap(capacity: Int) {
     val linkedHashMap = object : LinkedHashMap<Int, Int>(capacity, 0.75f, true) {
         override fun removeEldestEntry(eldest: MutableMap.MutableEntry<Int, Int>?): Boolean {
             return size > capacity
