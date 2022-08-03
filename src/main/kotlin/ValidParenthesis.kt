@@ -27,6 +27,6 @@ class ValidParenthesis {
                 else -> throw Exception("bad input")
             }
         }
-        return deque.isNotEmpty()
+        return deque.isEmpty()
     }
 }
