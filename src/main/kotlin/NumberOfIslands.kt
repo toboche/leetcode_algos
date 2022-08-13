@@ -5,13 +5,11 @@ class NumberOfIslands {
             return 0
         }
         val ns = grid[0].size
-        val visited = Array(ms) { BooleanArray(ns) }
         var count = 0
 
         fun island(
             m: Int,
-            n: Int,
-            localVisited: Array<BooleanArray> = Array(ms, { BooleanArray(ns) })
+            n: Int
         ): List<Pair<Int, Int>> {
             return if (m < 0 || n < 0) {
                 emptyList()
@@ -19,22 +17,20 @@ class NumberOfIslands {
                 emptyList()
             } else if (grid[m][n] == '0') {
                 emptyList()
-            } else if(localVisited[m][n]){
-                emptyList()
             } else {
-                localVisited[m][n] = true
+                grid[m][n] = '0'
                 listOf(m to n) +
-                        island(m + 1, n, localVisited) +
-                        island(m - 1, n, localVisited) +
-                        island(m, n + 1, localVisited) +
-                        island(m, n - 1, localVisited)
+                        island(m + 1, n) +
+                        island(m - 1, n) +
+                        island(m, n + 1) +
+                        island(m, n - 1)
             }
 
         }
 
         for (m in 0 until ms) {
             for (n in 0 until ns) {
-                if (visited[m][n]) {
+                if (grid[m][n] == '0') {
                     continue
                 }
                 val island = island(m, n)
@@ -42,8 +38,6 @@ class NumberOfIslands {
                 if (island.isEmpty()) {
                     continue
                 }
-
-                island.forEach { visited[it.first][it.second] = true }
                 count += 1
             }
         }
