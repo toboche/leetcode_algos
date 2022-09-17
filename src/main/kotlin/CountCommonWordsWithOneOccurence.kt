@@ -9,9 +9,8 @@ class CountCommonWordsWithOneOccurence {
         words2.forEach { w2 ->
             map2[w2] = map2[w2] == null
         }
-        return map1.filter { (key, value) ->
+        return map1.count { (key, value) ->
             value && (map2[key] ?: false)
         }
-            .count()
     }
 }
