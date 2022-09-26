@@ -12,6 +12,24 @@ class FindSubarrayWithGivenSumTest {
         )
     }
 
+    @Test
+    fun `empty`() {
+        val actual = FindSubarrayWithGivenSum().subArraySum(intArrayOf(), 33)
 
+        assertEquals(
+            null,
+            actual
+        )
+    }
+
+    @Test
+    fun `zero target`() {
+        val actual = FindSubarrayWithGivenSum().subArraySum(intArrayOf(1, 2, 3, 4), 0)
+
+        assertEquals(
+            0 to 0,
+            actual
+        )
+    }
 
 }
