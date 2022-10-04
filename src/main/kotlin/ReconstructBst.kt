@@ -7,7 +7,7 @@ class ReconstructBst {
     }
 
     fun reconstructBst(preOrderTraversalValues: List<Int>): BST? {
-        fun visit(list: IntArray): BST? {
+        fun visit(list: List<Int>): BST? {
             if (list.isEmpty()) return null
 
             val first = list.first()
@@ -22,14 +22,14 @@ class ReconstructBst {
                 ?.index
                 ?: -1
             val right = if (startOfRight != -1) {
-                visit(list.copyOfRange(startOfRight, list.count()))
+                visit(list.subList(startOfRight, list.count()))
             } else {
                 null
             }
             val left = if (startOfRight != -1 && startOfRight != 1) {
-                visit(list.copyOfRange(1, startOfRight))
+                visit(list.subList(1, startOfRight))
             } else if (startOfRight == -1 && list.count() > 1) {
-                visit(list.copyOfRange(1, list.count()))
+                visit(list.subList(1, list.count()))
             } else {
                 null
             }
@@ -38,6 +38,6 @@ class ReconstructBst {
         }
 
 
-        return visit(preOrderTraversalValues.toIntArray())
+        return visit(preOrderTraversalValues)
     }
 }
